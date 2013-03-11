@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+FILE=/var/djangodemo/enabled/uwsgi/conf/djangodemo
+AVAILABLE_DIR=/etc/uwsgi/apps-available
+ENABLED_DIR=/etc/uwsgi/apps-enabled
+
+if [ -f $FILE ]; then
+  sudo cp $FILE $AVAILABLE_DIR/djangodemo.ini
+  sudo ln -sf $AVAILABLE_DIR/djangodemo.ini $ENABLED_DIR/djangodemo.ini
+fi 
+

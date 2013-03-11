@@ -1,0 +1,10 @@
+server {
+  listen 80;
+  server_name %(nginx_dns)s;
+
+  location /djangodemo {
+    uwsgi_pass %(uwsgi_dns)s:8000;
+    include    uwsgi_params;
+  }
+}
+

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+which mysql > /dev/null
+
+if [ $? -eq 0 ]; then exit 0; fi
+
+MYSQL_PASSWORD="djangodemo"
+cat <<MYSQL_PRESEED | sudo debconf-set-selections
+mysql-server-5.5 mysql-server/root_password password $MYSQL_PASSWORD
+mysql-server-5.5 mysql-server/root_password_again password $MYSQL_PASSWORD
+mysql-server-5.5 mysql-server/start_on_boot boolean true
+MYSQL_PRESEED
+
+sudo apt-get -y install mysql-server
+

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+dep2 
+dep2 install local host-0 nginx
+dep2 install local host-0 uwsgi

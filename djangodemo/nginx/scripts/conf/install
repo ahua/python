@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+FILE=/var/djangodemo/enabled/nginx/conf/djangodemo
+AVAILABLE_DIR=/etc/nginx/sites-available
+ENABLED_DIR=/etc/nginx/sites-enabled
+
+if [ -f $FILE ]; then
+  sudo cp $FILE $AVAILABLE_DIR
+  sudo ln -sf $AVAILABLE_DIR/djangodemo $ENABLED_DIR/djangodemo
+fi 
+

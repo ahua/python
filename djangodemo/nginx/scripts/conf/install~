@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+FILE=
+
+if [ -f /var/djangodemo/enabled/nginx/conf/djangodemo ];
+  cp 
+fi 
+

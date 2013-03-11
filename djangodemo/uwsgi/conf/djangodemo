@@ -1,0 +1,20 @@
+[uwsgi]
+plugins = python
+logto = /var/log/uwsgi.log
+socket = 0.0.0.0:8000
+chmod-socket = 666
+limit-as = 256
+processes = 6
+max-request = 2000
+memory-report = true
+enable-threads = true
+pythonpath = %(pythonpath)s
+chdir      = %(chdir)s
+
+uid = root
+gid = root
+
+env     = DJANGO_SETTINGS_MODULE=%(mysite)s.settings
+module  = django.core.handlers.wsgi:WSGIHandler()
+
+

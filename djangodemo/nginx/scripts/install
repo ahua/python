@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+which nginx > /dev/null
+if [ $? -eq 0  ];
+then
+  exit 0;
+fi
+
+sudo apt-get update
+sudo apt-get install -y  nginx nginx-common nginx-full
+
