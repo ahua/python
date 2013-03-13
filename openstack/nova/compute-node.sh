@@ -2,7 +2,8 @@
 
 source config.sh
 
-apt-get install -y nova-compute nova-network nova-volume nova-api python-keystoneclient
+apt-get install -y nova-compute nova-network nova-volume nova-api python-keystoneclient \
+    python-keystone
 
 sed -i "s/admin_tenant_name.\+/admin_tenant_name = ADMIN/g" /etc/nova/api-paste.ini
 sed -i "s/admin_user.\+/admin_user = admin/g"               /etc/nova/api-paste.ini
