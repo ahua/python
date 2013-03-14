@@ -1,5 +1,11 @@
+'''
+Created on Apr 19, 2011
+
+@author: chzhong, kunli, congliu
+
+'''
 import os
-import sys
+
 
 from dolphindeploy import settings
 from dolphindeploy.utils import setup_host
@@ -9,35 +15,22 @@ from dolphindeploy.install_engine import install_packages
 
 svc = settings.VERSION_CONTROL_MODULE
 
+#CHECK_DEPENDENCIES = False
 _cp = None
 
-def deploy(source, confset, server, role, version=None, build_only=False, check_deps=False):
-
-    cp = load_confset_config(confset)
-
-    if not svc.check_path(source) and os.path.isdir(source):
-        source = os.path.abspath(source)
-
-    if not version:
-        version = svc.get_version(source)
-
-    if not server:  # deploy confset
-        packages = get_packages(source, confset)
-    elif not role:  # deploy server
-        packages = get_packages(source, confset, server)
+def deploy(source, confset, servers=None, roles=None, version=None, build_only=False, check_deps=False):
+    if servers and roles:
+        deploy_role(source, confset, servers, roles, version=version, build_only=build_only, check_deps=check_deps)
+    elif servers:
+        deploy_servers(source, confset, servers, version=version, build_only=build_only, check_deps=check_deps)
+    elif roles:
+        deploy_role(source, confset, None, roles, version=version, build_only=build_only, check_deps=check_deps)
     else:
-        packages = get_packages(source, confset, server, role)
+        deploy_confset(source, confset, version=version, build_only=build_only, check_deps=check_deps)
 
-    if build_only:
-        return
-
-    install_packages(packages, version, check_deps=check_deps)
-
-def get_packages(source, confset, server=None, role=None):
-    return []
 
 def perpare_args(source, confset, version=None, roles=None):
-
+    cp = load_confset_config(confset)
     if not svc.check_path(source) and os.path.isdir(source):
         source = os.path.abspath(source)
     if not version:
@@ -45,7 +38,6 @@ def perpare_args(source, confset, version=None, roles=None):
     if roles:
         roles = normalize_roles(roles)
     return cp, source, version, roles
-
 
 def deploy_confset(source, confset, version=None, build_only=False, check_deps=False):
     '''
@@ -96,4 +88,7 @@ def deploy_role(source, confset, servers, roles, version=None, build_only=False,
 
 def _deploy_role(source, cp, server, role_or_roles, version=None, build_only=False, check_deps=False):
     cp.defaults()['webzine_version'] = version
-
+    packages = build_role(source, cp, server, role_or_roles)
+    if build_only:
+        return
+    install_packages(packages, version, check_deps=check_deps)

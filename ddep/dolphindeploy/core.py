@@ -1,3 +1,9 @@
+'''
+Created on May 30, 2011
+
+@author: chzhong
+'''
+
 import os
 
 from dolphindeploy.parsers import PathConfigParser, OrderedDict
