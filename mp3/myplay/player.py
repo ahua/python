@@ -1,41 +1,32 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-import time  # import system modules
+import time
 from os import path
-import ui_cn as ui  # import custom modules
+import ui_cn as ui
 import lrc
 import pyxine
 
-class g:  # Glabal Vars
+class g:
     paused = False
     skip = False
 
-def play(f):  # f: Filename
+def play(f):
     if not path.exists(f):
-        ui.throw('文件不存在：' + f)
+        ui.throw(u'文件不存在：' + f)
         return
+    ui.g.lrcFile = lrc.get_lrc_name(f)
+    if not lrc.loadLrc(ui.g.lrcFile):
+        ui.g.lrcFile = ''
+
     xine = pyxine.Xine()
     stream = xine.stream_new()
     stream.open(f)
-
-    ui.g.lrcFile = lrc.changeExt(f)
-    if not lrc.loadLrc(ui.g.lrcFile):  # No LRC file
-        ui.g.lrcFile = ''
-
     stream.play()
-    ui.setInfo(f, int(stream.get_pos_length()[2]))
 
+    ui.setInfo(f, int(stream.get_pos_length()[2] * 1000))
     g.skip = False
     while not g.skip:
-        if not g.paused:
-            ui.setTime(int(stream.get_pos_length()[1]))
-        else:
-            time.sleep(0.1)
+        ui.setTime(int(stream.get_pos_length()[1] * 1000))
         ui.draw()
-    
-def main():
-    
-    return 0
 
-if __name__ == '__main__': main()

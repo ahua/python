@@ -170,7 +170,7 @@ def draw():
     else:
         lrcMsg = '没有 LRC 文件'
         lyrics = ['提醒：', '找不到 LRC 文件。',\
-                "您有没有将其命名为  %s 呢？" % path.basename(lrc.changeExt(g.song))]
+                "您有没有将其命名为  %s 呢？" % path.basename(lrc.get_lrc_name(g.song))]
     statMsg = threelize(statMsg, lrcTitle, lrcMsg, g.scr.getmaxyx()[1] - 4)
     msgs = [[statMsg, 4],\
             ['', 1],\

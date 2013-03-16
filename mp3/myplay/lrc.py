@@ -8,14 +8,15 @@ class g:
     lrcds = {}  
     timeline = []  
 
-def changeExt(p):  
-    return path.splitext(p)[0] + '.lrc'
+def get_lrc_name(mp3_filename):  
+    return path.splitext(mp3_filename)[0] + '.lrc'
 
 def loadLrc(lrcFile):
-    g.lrcds = {}  # Clear last datas
+    g.lrcds = {}  
     g.timeline = []
     if not path.exists(lrcFile):
         return False
+   
     lf = open(lrcFile)
     while True:
         line = lf.readline()
@@ -33,6 +34,7 @@ def loadLrc(lrcFile):
             ui.throw('LRC 节异常：' + str(line))
             continue
         line[0] = line[0].split(':')
+
         # For LRC section: "[a:b]c"
         # line = [[a, b], c]
         if not line[0][0].isdigit():  # LRC data    line[1] == '' and 
@@ -42,15 +44,19 @@ def loadLrc(lrcFile):
             if g.lrcds.has_key('offset'):
                 offset = int(g.lrcds['offset'])
             time = int((int(line[0][0]) * 60 + float(line[0][1])) * 1000)
+            
             g.timeline.append([time + offset, line[1]])
+
     g.timeline.sort()
+
     return True
+
 
 def getLrc(current_time):
     i = 0
     for lrc_time, lyric in g.timeline:  # Why enumerate doesn't work?
         if current_time < lrc_time:
-            break
+            continue
         i += 1
     i -= 1
     lyrics = ['', '', '']
@@ -60,6 +66,7 @@ def getLrc(current_time):
     if i < len(g.timeline) - 1:
         lyrics[2] = g.timeline[i + 1][1]
     return lyrics
+
 
 def iconv(string):
     codings = ('utf8', 'gbk')
