@@ -1,33 +1,14 @@
 #!/usr/bin/env python
-#-*- coding: utf8 -*-
-#
-#    lrc.py
-#
-#    Copyright 2010 cjxgm (兰威举) <cjxgm@126.com>
-#
-#    This file is part of pylmp.
-#
-#    Pylmp is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    pylmp is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with pylmp.  If not, see <http://www.gnu.org/licenses/>.
+#-*- coding: utf-8 -*-
 
 from os import path
 import ui_cn as ui
 
-class g:  # Global Vars
-    lrcds = {}  # LRC datas
-    timeline = []  # LRC timeline
+class g:  
+    lrcds = {}  
+    timeline = []  
 
-def changeExt(p):  # change extname from '.mp3' to '.lrc'
+def changeExt(p):  
     return path.splitext(p)[0] + '.lrc'
 
 def loadLrc(lrcFile):
@@ -92,8 +73,4 @@ def iconv(string):
             return string.decode(c).encode('utf8')
     return string
 
-def main():
-    
-    return 0
 
-if __name__ == '__main__': main()
