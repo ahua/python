@@ -12,6 +12,10 @@ def get_new_filename(filename):
     new_name = "%03d" % int(name.replace("lesson","").strip(" "))
     return new_name + suffix
 
+def help():
+    usage = "$ prog dir"
+    print usage
+    sys.exit(0)
 
 if __name__ == "__main__":
     d = sys.argv[1] if len(sys.argv) > 1 else "."
