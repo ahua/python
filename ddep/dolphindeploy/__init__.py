@@ -18,7 +18,8 @@ from dolphindeploy import global_settings
 from dolphindeploy import importlib
 
 
-SETTINGS_MODULE_PATH = "conf/deploy_settings.py"
+#SETTINGS_MODULE_PATH = "conf/deploy_settings.py"
+SETTINGS_MODULE_PATH = "/home/yhyan/project/AppChannel-Service-In-Git/AppChannel-Service/conf/deploy_settings.py"
 
 class BuildHandler(object):
     '''A abstract class that representing a pre-build phase.

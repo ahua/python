@@ -27,10 +27,10 @@ def main():
                       dest='check_deps', default=False)
     parser.add_option('--source', action='store', type="string",\
                       dest='source', default=".")
-    parser.add_option('-s', '--server', action='store',\
-                      dest='server', default=None)
-    parser.add_option('-r', '--role', action='store',\
-                      dest='role', default=None)
+    parser.add_option('-s', '--server', action='append',\
+                      dest='servers', default=[])
+    parser.add_option('-r', '--role', action='append',\
+                      dest='roles', default=[])
     parser.add_option('-v', '--version', action='store', type="string",\
                       dest='version', default=None)
 
@@ -44,11 +44,15 @@ def main():
     check_deps = options.check_deps
     source = options.source
     confset = args[0]
-    server = args[1] if len(args) > 2 else options.server
-    role = args[2] if len(args) > 3 else options.role
+    servers = options.servers
+    if len(args) >= 2:
+        servers.append(args[1])
+    roles = options.roles
+    if len(args) >= 3:
+        roles.append(args[2])
     version = options.version
 
-    deploy(source, confset, server, role, version, build_only, check_deps)
+    deploy(source, confset, servers, roles, version, build_only, check_deps)
 
 
 if __name__ == "__main__":
