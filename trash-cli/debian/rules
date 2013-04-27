@@ -1,0 +1,8 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@ --with python2
+
+clean:
+	dh clean --with python2
+	rm -rf trash_cli.egg-info/

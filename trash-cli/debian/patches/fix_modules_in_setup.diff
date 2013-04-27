@@ -1,0 +1,14 @@
+Description: Fix modules installation for debian python
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+--- a/setup.py
++++ b/setup.py
+@@ -17,7 +17,8 @@
+     description = 'Command line interface to FreeDesktop.org Trash.',
+     license = 'GPL v2',
+     long_description = file("README.txt").read(),
+-    packages = find_packages(exclude=["tests", "tests.*"]),
++    packages = ["trashcli"],
++    py_modules = ["restore_trash", "trash_empty", "trash_list", "trash_put"],
+     test_suite = "nose.collector",
+     entry_points = {
+         'console_scripts' : [

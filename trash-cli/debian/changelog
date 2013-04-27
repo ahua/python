@@ -1,0 +1,59 @@
+trash-cli (0.11.3~git20120324.fb57a8e-1) unstable; urgency=low
+
+  * New upstream release (Closes: #665863)
+  * debian/control: add python-pkg-resources to depends (Closes: #665872)
+  * Removed manpage for volume-of command (removed upstream)
+
+  [Javi Merino]
+  * Add Vcs-* entries
+
+ -- Stefano Karapetsas <stefano@karapetsas.com>  Mon, 26 Mar 2012 20:47:59 +0200
+
+trash-cli (0.11.3~git20120112.28653c6-2) unstable; urgency=low
+
+  * New debian release (Closes: #662670)
+  * Add myself as maintainer
+  * Bump Standards-Version to 3.9.3 (no changes)
+  * Bump X-Python-Version to 2.6
+  * debian/rules: fix dh_clean to build twice in a row
+  * debian/copyright: add missing LGPL license
+
+ -- Stefano Karapetsas <stefano@karapetsas.com>  Tue, 20 Mar 2012 21:55:14 +0000
+
+trash-cli (0.11.3~git20120112.28653c6-1) unstable; urgency=low
+
+  * New upstream release (Closes: #493212, #510043, #550074, #593104)
+  * Add myself as uploader
+  * Source format is 3.0 (quilt)
+  * Move to debhelper and dh_python2
+  * debian/control:
+     - Updated homepage
+     - Add python-setuptools to build depends
+     - Drop cdbs from build depends
+     - Bumped standards version to 3.9.2
+  * debian/copyright: updated to DEP5
+  * Add manpage for volume-of
+  * Removed manpages for trash-* commands, they are in upstream now
+  * Add NEWS.Debian file (thanks to Andrew Starr-Bochicchio)
+  * Update debian/watch to github (thanks to Andrew Starr-Bochicchio)
+
+ -- Stefano Karapetsas <stefano@karapetsas.com>  Fri, 10 Feb 2012 01:03:23 +0100
+
+trash-cli (0.1.10.28-2) unstable; urgency=low
+
+  * Removed surplus manpage (Bug: 489423)
+     - Removed bluetrash.1 from debian/manpage
+     - Edited bluetrash.1 from debian/manpages
+  * debian/control: Improved description [thanks to Justin B Rye]
+  * Improved manpage descriptions
+  * Added SEE ALSO to manpages
+  * debian/control: bumped standards version to 3.8.0 (no change)
+
+ -- Steve Stalcup <vorian@ubuntu.com>  Sat, 05 Jul 2008 12:26:54 -0400
+
+trash-cli (0.1.10.28-1) unstable; urgency=low
+
+  * Initial release (Closes: #483022)
+
+ -- Steve Stalcup <vorian@ubuntu.com>  Wed, 21 May 2008 14:00:43 -0400
+

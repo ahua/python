@@ -1,0 +1,23 @@
+trash-cli (0.11.3~git20120324.fb57a8e-1) unstable; urgency=low
+
+  * The trash-restore command was renamed restore-trash, as upstream
+    specifications.
+  * The volume-of command was removed upstream.
+  * Please update any usage in scripts accordingly.
+
+ -- Stefano Karapetsas <stefano@karapetsas.com>  Mon, 26 Mar 2012 20:47:59 +0200
+
+trash-cli (0.11.3~git20120112.28653c6-1) unstable; urgency=low
+
+  * The names of the binaries provided by this package have
+    been changed upstream. Both the old command and its
+    corresponding new command are provided below for your
+    convenience. Please update any usage in scripts accordingly.
+
+        Old command:        New command:
+      - trash           ->  trash-put
+      - empty-trash     ->  trash-empty
+      - list-trash      ->  trash-list
+      - restore-trash   ->  trash-restore
+
+ -- Andrew Starr-Bochicchio <a.starr.b@gmail.com>  Fri, 10 Feb 2012 01:03:23 +0100

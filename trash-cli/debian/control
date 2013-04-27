@@ -1,0 +1,24 @@
+Source: trash-cli
+Section: utils
+Priority: extra
+Maintainer: Stefano Karapetsas <stefano@karapetsas.com>
+Uploaders: Javi Merino <vicho@debian.org>
+Build-Depends: debhelper (>= 8),
+               python (>= 2.6.6-3~),
+               python-setuptools
+X-Python-Version: >= 2.6
+Standards-Version: 3.9.3
+Homepage: https://github.com/andreafrancia/trash-cli
+Vcs-Git: git://git.debian.org/git/collab-maint/trash-cli.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/trash-cli.git;a=summary
+
+Package: trash-cli
+Architecture: all
+Depends: ${python:Depends},
+         ${misc:Depends},
+         python-pkg-resources
+Description: command line trashcan utility
+ This package provides a command line interface trashcan utility
+ compliant with the FreeDesktop.org Trash Specification. It remembers
+ the name, original path, deletion date, and permissions of each trashed
+ file
