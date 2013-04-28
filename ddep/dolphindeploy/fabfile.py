@@ -3,11 +3,11 @@
 import sys
 import os
 from optparse import OptionParser
-from deploy_engine import deploy
 
 HERE = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.dirname(HERE))
 
+from deploy_engine import deploy
 
 def usage():
     s = """

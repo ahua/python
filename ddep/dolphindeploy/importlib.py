@@ -46,6 +46,7 @@ def import_module(name, package=None):
     importer(name)
     return sys.modules[name]
 
+
 def import_file(path):
     """Import a Python script as a module.
     """
