@@ -10,12 +10,15 @@ class Interface:
         os.system("clear")
 
     @classmethod
-    def display(cls, lyrics):
+    def display(cls, lyrics, title=None):
         Interface.clear()
         
         lines = lyrics["lines"]
         pos = lyrics["pos"]
-        
+
+        if title:
+            print Interface.P_EMPTY + title
+
         for i in range(0, len(lines)):
             if i == pos:
                 print Interface.P_CURRENT + lines[i][1]

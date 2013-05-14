@@ -46,7 +46,7 @@ class Player:
         while True:
             time.sleep(1)
             pos = int(self.stream.get_pos_length()[1] * 1000)
-            Interface.display(self.lrc.get_lyrics(pos))
+            Interface.display(self.lrc.get_lyrics(pos), self.mp3_list[self.i])
             if self.status() == self.S_STOP:
                 if self.play_mode == Player.MODE_ONCE:
                     break
