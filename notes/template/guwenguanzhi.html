@@ -1,0 +1,23 @@
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<style type="text/css"> </style>
+</head>
+<body>
+<table border="1px" cellspacing="0px">
+  <tr> <th>卷名</th> <th>篇名</th> <th>题目</th> <th>作者</th> 
+    <th>完成</th> <th>开始时间</th> <th>结束日期</th></tr>
+  {% for i in items %}
+    <tr>
+      <th>{{ i.vol }}</th>
+      <th>{{ i.pos }}</th>
+      <th>{{ i.title }}</th>
+      <th>{{ i.author }}</th>
+      <th>{{ i.finished }}</th>
+      <th>{{ i.startdate }}</th>
+      <th>{{ i.enddate }}</th>
+    </tr>
+  {% endfor %}
+</table>
+</body>
+</html>

@@ -1,0 +1,27 @@
+$ django-admin.py startproject mysite
+
+$ syncdb
+Creating tables ...
+Creating table auth_permission
+Creating table auth_group_permissions
+Creating table auth_group
+Creating table auth_user_user_permissions
+Creating table auth_user_groups
+Creating table auth_user
+Creating table django_content_type
+Creating table django_session
+Creating table django_site
+Creating table django_admin_log
+
+You just installed Django's auth system, which means you don't have any superusers defined.
+Would you like to create one now? (yes/no): yes
+Username (leave blank to use 'yhyan'): 
+E-mail address: gosefan@gmail.com
+Password: 123456
+Password (again): 123456
+Superuser created successfully.
+Installing custom SQL ...
+Installing indexes ...
+Installed 0 object(s) from 0 fixture(s)
+Finished "/home/yhyan/github/python/notes/manage.py syncdb" execution.
+
