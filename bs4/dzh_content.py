@@ -17,10 +17,10 @@ def get_content(href):
     div =  soup.find("div", {"id": "intro"})
     td_list = div.find("table").find_all("td")
 
-    s = ""
+    s = []
     ntd_list = [td_list[1], td_list[45], td_list[47]]
     for td in ntd_list:
-        s += td.text
+        s.append(td.text.encode("utf8"))
     return s
 
 def get_data(stockid):
@@ -52,11 +52,23 @@ DB = "dosite"
 
 
 def get_stocklist():
-    return ["sz002426"]
+    stocklist = []
+    with open("id_name.txt") as fp:
+        for li in fp:
+            sid, sname = li.rstrip().split("\t")
+            if sid[0] == "0" or sid[0] == "3":
+                stocklist.append(["sz" + sid, sname])
+            else:
+                stocklist.append(["sh" + sid, sname])
+    return stocklist[1:]
 
 if __name__ == "__main__":
     stocklist = get_stocklist()
-    for stockid in stocklist:
-        data = get_data(stockid)
-        print data
+    for sid, sname in stocklist:
+        data = get_data(sid)
+        res = [sid, sname] + data
+        print " ".join(res)
+            
+            
+
 
