@@ -57,8 +57,12 @@ if __name__ == "__main__":
     DB = "dosite"
     HOST = "112.124.39.18"
     init_db(USER, PASSWD, DB, HOST)
-    for i in range(1, 9834):
-        data = shuowen(i)
-        insert(data)
+    for i in range(2116, 9834):
+        try:
+            data = shuowen(i)
+            insert(data)
+        except:
+            pass
+
     close_db()
 

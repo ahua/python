@@ -18,7 +18,8 @@ def get_content(href):
     td_list = div.find("table").find_all("td")
 
     s = []
-    ntd_list = [td_list[1], td_list[45], td_list[47]]
+    #ntd_list = [td_list[1], td_list[45], td_list[47]]
+    ntd_list = [td_list[1], td_list[11], td_list[13], td_list[45], td_list[47]]
     for td in ntd_list:
         s.append(td.text.encode("utf8"))
     return s
@@ -45,13 +46,26 @@ def close_db():
     C.close()
     DB.close()
 
+def insert_to_db(iterdata):
+    global DB, C
 
-USER = "yhyan"
-PASSWD = "yhyanP@55word"
-DB = "dosite"
+    sql = """INSERT INTO  StockTradeRecord_dzhinfo (`code`, `name`, `company`, `hangye`, `site`, `intro`, `history`)
+           VALUES (%s, %s, %s, %s, %s, %s, %s)
+            on duplicate key update updated_at = now()"""
+    C.executemany(sql, iterdata)
+    DB.commit()  # this line is important.
+
+
+
+user = "yhyan"
+pwd = "yhyanP@55word"
+db = "dosite"
+
 
 
 def get_stocklist():
+    #return [["sz000001", "xxx"]]
+
     stocklist = []
     with open("id_name.txt") as fp:
         for li in fp:
@@ -64,11 +78,17 @@ def get_stocklist():
 
 if __name__ == "__main__":
     stocklist = get_stocklist()
+    iterdata = []
     for sid, sname in stocklist:
-        data = get_data(sid)
-        res = [sid, sname] + data
-        print " ".join(res)
-            
-            
+        try:
+            data = get_data(sid)
+            res = [sid, sname] + data
+            iterdata.append(res)
+            #print "\n".join(res)
+        except:
+            print >> sys.stderr, sid, sname
 
+    init_db(user, pwd, db)
+    insert_to_db(iterdata)
+    close_db()
 
