@@ -71,7 +71,7 @@ class Fetcher(object):
         return urllib2.urlopen(req).read()
 
 
-while True:
+def main():
     start = datetime.datetime.now()
     
     s = Fetcher('yanjiahua90@163.com', 'yanyahuapassword')
@@ -86,16 +86,13 @@ while True:
     
     m = start.strftime("%Y%m%d_%H_%M_%S")
   
+    outfile = "/var/tmp/weibo/%s.txt" % start.strftime("%Y%m%d")
+    fp = open(outfile, "a")
     
-    #print start
-    #print end
-    
-    
-    
-    print m, name, tip2[0], tip2[1], tip2[2]
-    
+    li = "%s %s %s %s %s\n" % (m, name, tip2[0], tip2[1], tip2[2])
+    fp.write(li.encode("utf8"))
+    fp.close()
 
-    time.sleep(60)
-
+main()
 
 
