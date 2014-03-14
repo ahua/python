@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# */1 * * * * /home/yhyan/github/python/sinaspider/weibocn.py 2>&1 > /var/tmp/weibo/error.log
+
 import time
 import urllib2
 import urllib
@@ -63,10 +65,6 @@ class Fetcher(object):
             self.cj.save(filename=cookie_filename)
         elif self.cj.filename is not None:
             self.cj.save()
-        else:
-            self.cj.filename = "/tmp/cookie.txt"
-            self.cj.save()
-
         #print 'login success!'
          
     def fetch(self, url):
@@ -75,13 +73,12 @@ class Fetcher(object):
         return urllib2.urlopen(req).read()
 
 
-def main(weibo_addr="http://weibo.cn/u/1738850664"):
+def main():
     start = datetime.datetime.now()
     
-    s = Fetcher('yanjiahua90@163.com', 'yanyahuapassword')
-    s.login()
-    
-    text = s.fetch(weibo_addr)
+    s = Fetcher('yanjiahua90@163.com', 'yanyahuapassword', '/tmp/cookie.txt')
+    #s.login()
+    text = s.fetch("http://weibo.cn/u/1738850664")
     soup = BeautifulSoup(text)
     
     name = soup.find("span", {"class": "ctt"}).getText().split()[0]
@@ -91,10 +88,13 @@ def main(weibo_addr="http://weibo.cn/u/1738850664"):
     
     m = start.strftime("%Y%m%d_%H_%M_%S")
   
+    outfile = "/var/tmp/weibo/%s.txt" % start.strftime("%Y%m%d")
+    fp = open(outfile, "a")
+    
     li = "%s %s %s %s %s\n" % (m, name, tip2[0], tip2[1], tip2[2])
-    print li,
+    fp.write(li.encode("utf8"))
+    fp.close()
 
-while True:
-    main()
-    time.sleep(30)
+main()
+
 
