@@ -63,6 +63,10 @@ class Fetcher(object):
             self.cj.save(filename=cookie_filename)
         elif self.cj.filename is not None:
             self.cj.save()
+        else:
+            self.cj.filename = "/tmp/cookie.txt"
+            self.cj.save()
+
         #print 'login success!'
          
     def fetch(self, url):

@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# */1 * * * * /home/yhyan/github/python/sinaspider/weibocn.py 2>&1 > /var/tmp/weibo/error.log
+
 import time
 import urllib2
 import urllib
