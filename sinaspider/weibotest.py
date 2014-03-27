@@ -77,7 +77,7 @@ def main():
     start = datetime.datetime.now()
     
     s = Fetcher('yanjiahua90@163.com', 'yanyahuapassword', '/tmp/cookie.txt')
-    #s.login()
+    s.login()
     text = s.fetch("http://weibo.cn/u/1738850664")
     soup = BeautifulSoup(text)
     
