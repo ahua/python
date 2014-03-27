@@ -65,7 +65,7 @@ class Fetcher(object):
             self.cj.save(filename=cookie_filename)
         elif self.cj.filename is not None:
             self.cj.save()
-        #print 'login success!'
+        print 'login success!'
          
     def fetch(self, url):
         #print 'fetch url: ', url
@@ -76,8 +76,8 @@ class Fetcher(object):
 def main():
     start = datetime.datetime.now()
     
-    s = Fetcher('yanjiahua90@163.com', 'yanyahuapassword', '/tmp/cookie.txt')
-    s.login()
+    s = Fetcher()
+    s.login('yanjiahua90@163.com', 'yanyahuapassword', '/tmp/cookie.txt')
     text = s.fetch("http://weibo.cn/u/1738850664")
     soup = BeautifulSoup(text)
     
