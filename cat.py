@@ -40,8 +40,9 @@ class Cat(MysqlConn):
                           position smallint,
                           to_title varchar(512),
                           to_item int unsigned,
-                          primary key(`id`)
-                        );"""
+                          primary key(`id`),
+                          UNIQUE KEY `time_sn_device_item` (`time`,`sn`,`device`,`to_item`)
+                        ) CHARACTER SET=utf8;"""
             cur.execute(sql)
 
         mysql.close()
@@ -60,12 +61,12 @@ class Cat(MysqlConn):
         to_title = p.get("to_title")
         to_item = p.get("to_item")
         
-        if not time_s or not sn:
+        if not time_s or not sn or not section or not to_item:
             return
 
         sql = """insert ignore into
                     video_category_out(time, sn, device, title, section, position, to_title, to_item)
-                    values('%s', %s, %s, %s)
+                    values('%s', %s, %s, '%s', '%s', %s, '%s', %s)
                  """ % (time_s, self.r.hget(self.c_dev_2id, sn), self.r.hget(self.c_type_2id, device),
                         title, section, position, to_title, to_item)
         self.insert_sql(sql)
